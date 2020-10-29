@@ -19,7 +19,11 @@ struct DetailCountryView: View {
             case .isLoading:
                 Text("Loading...")
             case .hasData(let stats):
-                Text("\(stats.last?.Cases ?? -1)")
+                Form {
+                    Section {
+                        Text("Cases: \(stats.last?.Cases ?? -1)")
+                    }
+                }
             }
         }.onAppear {
             apiService.getStats(slug: country.slug)
